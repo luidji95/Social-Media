@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Social Media Project</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <input type="text" placeholder="Find friends" class="find-friends-input">
+            <div class="profile-pic">
+                <img src="img/profilepic.jpg" alt="Profile Picture">
+            </div>
+        </div>
+        <div class="results-container"></div>
+        <div class="profile-section">
+            <div class="cover-photo">
+                <img src="img/cover.jfif" alt="Cover Photo">
+            </div>
+            <div class="profile-details">
+                <div class="profile-pic-large">
+                    <img src="img/profilepic.jpg" alt="Profile Picture">
+                </div>
+                <h1 class="profile-name">Milos Petrovic</h1>
+                <p class="profile-location">Belgrade, Serbia</p>
+                <div class="create-post">
+                    <input type="text" placeholder="Write a post" class="post-input">
+                    <button class="add-post">Add Post</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="helper">
+                <h3>Friends</h3>
+                <div class="friend-grid">
+                    <!--Ovde ce se dinamicki dodavati prijatelji iz niza -->
+                </div>
+            </div>
+            <div class="user-wall-section">
+                <!-- Ovde ce se dinamicki izrenderovati svi postovi -->
+            </div>
+        </div>
+        
+
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
