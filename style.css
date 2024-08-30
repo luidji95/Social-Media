@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 2px solid grey;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.find-friends-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    transition: width 0.3s ease-in-out;
+}
+
+.find-friends-input:focus {
+    width: 300px;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    overflow: hidden;
+    height: 50px;
+    width: 50px;
+    border: 2px solid #ccc;
+}
+
+.profile-pic img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
