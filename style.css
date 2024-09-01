@@ -245,3 +245,179 @@ body {
     font-size: 12px;
     color: #999;
 }
+
+
+.post-content {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.likes {
+    font-size: 14px;
+    color: #555;
+}
+
+.comments-count {
+    font-size: 14px;
+    color: #555;
+}
+
+
+.commentSection {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+
+.comment-input {
+    flex-grow: 1;
+    padding: 8px 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.comment-input:focus {
+    border-color: #007bff;
+}
+
+.add-comment-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-comment-btn:hover {
+    background-color: #0056b3;
+}
+.comment-input-section{
+    display: flex;
+}
+.post-date {
+    display: block;
+    font-size: 0.9em;
+    color: gray;
+    margin-left: 20px;
+}
+/* General Button Styles */
+.btn {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/* Button Base Style */
+.btn button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+/* Like Button Style */
+.btn .like {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.btn .like:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.btn .like:active {
+    background-color: #1f5a80;
+}
+
+/* Comment Button Style */
+.btn .comment {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.btn .comment:hover {
+    background-color: #27ae60;
+    transform: scale(1.05);
+}
+
+.btn .comment:active {
+    background-color: #1e8449;
+}
+
+.hidden {
+    display: none;
+}
+/* Styling the comment section container */
+.commentSection {
+    margin-top: 15px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+
+.single-comment {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+.comment-author {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.comment-text {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+}
+
+
+.comment-author, .comment-text {
+    flex: 1;
+}
+.com-show{
+    cursor: pointer;
+}  
+.aaa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
