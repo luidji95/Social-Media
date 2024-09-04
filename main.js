@@ -1,4 +1,3 @@
-import './style.css'
 
 'use strict';
 
@@ -197,3 +196,81 @@ class userManager {
 
 
 const userManagerInstance = new userManager();
+
+// Prikazivanje prijatelja
+friendGrid.innerHTML = "";
+userManagerInstance.Friends.forEach(friend => {
+    const friendDiv = `
+        <div class="friend">
+            <img src="${friend.img}" alt="${friend.firstName} ${friend.lastName}">
+            <p class="friend-name">${friend.firstName} ${friend.lastName}</p>
+        </div>
+    `;
+    friendGrid.insertAdjacentHTML('beforeend', friendDiv);
+});
+
+// Funkcionalnosti za lajk, komentar, dodavanje komentara i prikazivanje komentara
+wallSection.addEventListener('click', function(ev) {
+    if (ev.target.classList.contains('like')) {
+        const clickedPost = ev.target.closest('.post');
+        const clickedPostId = clickedPost.id;
+        const post = userManagerInstance.Posts.find(p => p.id === clickedPostId);
+
+        if (post) {
+            const userName = 'Milos Petrovic'; 
+            if (post.isLikedBy(userName)) {
+                post.removeLike(userName);
+            } else {
+                const newLike = new Like('Milos', 'Petrovic');
+                post.addLike(newLike);
+            }
+        }
+
+        userManagerInstance.renderDefaultPosts();
+    } else if (ev.target.classList.contains('comment')) {
+        const clickedPost = ev.target.closest('.post');
+        const commentInput = clickedPost.querySelector('.comment-input');
+        if (commentInput) {
+            commentInput.focus();
+        }
+    } else if (ev.target.classList.contains('add-comment-btn')) {
+        const clickedPost = ev.target.closest('.post');
+        const clickedPostId = clickedPost.id;
+        const post = userManagerInstance.Posts.find(p => p.id === clickedPostId);
+        const commentInput = clickedPost.querySelector('.comment-input');
+        
+        if (post && commentInput.value.trim()) {
+            const newComment = new Comment('Milos Petrovic', commentInput.value, 'img/profilepic.jpg');
+            post.addComment(newComment);
+
+            post.isCommentsVisible = true; 
+            userManagerInstance.updateCommentSection(clickedPostId);
+            commentInput.value = '';
+        }
+    } else if (ev.target.classList.contains('like-comment')) {
+        const clickedPost = ev.target.closest('.post');
+        const clickedPostId = clickedPost.id;
+        const post = userManagerInstance.Posts.find(p => p.id === clickedPostId);
+        const clickedComment = ev.target.closest('.single-comment');
+        const commentAuthor = clickedComment.querySelector('.comment-author').textContent;
+
+        const comment = post.Comments.find(c => c.author === commentAuthor);
+        if (comment) {
+            const userName = 'Milos Petrovic'; 
+            if (comment.isLikedBy(userName)) {
+                comment.removeLike(userName);
+            } else {
+                const newLike = new Like('Milos', 'Petrovic');
+                comment.addLike(newLike);
+            }
+        }
+
+        userManagerInstance.updateCommentSection(clickedPostId);
+    } else if (ev.target.classList.contains('com-show')) {
+        const clickedPost = ev.target.closest('.post');
+        const clickedPostId = clickedPost.id;
+        const post = userManagerInstance.Posts.find(p => p.id === clickedPostId);
+        post.isCommentsVisible = !post.isCommentsVisible;
+        userManagerInstance.updateCommentSection(clickedPostId);
+    } 
+});
