@@ -1,4 +1,3 @@
-
 'use strict';
 
 const wallSection = document.querySelector('.user-wall-section');
@@ -274,3 +273,130 @@ wallSection.addEventListener('click', function(ev) {
         userManagerInstance.updateCommentSection(clickedPostId);
     } 
 });
+
+const postsData = [
+    {
+        text: `If I'm to choose between one evil and another, I'd rather not choose at all.`,
+        likes: [
+            { firstName: 'Kilibarda', lastName: 'Petrovski' },
+            { firstName: 'Marc', lastName: 'Anderson' },
+            { firstName: 'Nemanja', lastName: 'Malesija' }
+        ],
+        comments: [
+            { 
+                name: 'Gordana Stouns', 
+                text: 'Wow, great quote!', 
+                img: 'img/profile1.jpg', 
+                likes: [
+                    { firstName: 'Marc', lastName: 'Anderson' },
+                    { firstName: 'Nemanja', lastName: 'Malesija' }
+                ] 
+            },
+            { 
+                name: 'Marc Anderson', 
+                text: 'I agree with you!', 
+                img: 'img/profile6.jpg', 
+                likes: [
+                    { firstName: 'Gordana', lastName: 'Stouns' }
+                ]
+            }
+        ]
+    },
+    {
+        text: `Once more into the fray. Into the last good fight I'll ever know. Live and die on this day. Live and die on this day.`,
+        likes: [
+            { firstName: 'Majda', lastName: 'Odzakilijevska' },
+            { firstName: 'Marc', lastName: 'Anderson' }
+        ],
+        comments: [
+            { 
+                name: 'Marc Anderson', 
+                text: 'So powerful!', 
+                img: 'img/profile6.jpg',
+                likes: [
+                    { firstName: 'Majda', lastName: 'Odzakilijevska' }
+                ] 
+            }
+        ]
+    },
+    {
+        text: 'In the end, we will remember not the words of our enemies, but the silence of our friends.',
+        likes: [
+            { firstName: 'Gordana', lastName: 'Stouns' }
+        ],
+        comments: []
+    }
+];
+
+profileSection.addEventListener('click', function(ev) {
+    if (ev.target.classList.contains('add-post')) {
+        const post = ev.target.closest('.create-post'); 
+        if (post) {
+            const postInput = post.querySelector('.post-input');
+            if (postInput) {
+                const postContent = postInput.value.trim();
+                if (postContent === '') {
+                    console.error("Post content cannot be empty!");
+                    return;
+                }
+    
+                console.log(postContent);
+                const newPost = new Post(postContent);
+                 userManagerInstance.Posts.push(newPost);
+                userManagerInstance.renderDefaultPosts();
+                postInput.value = ''; 
+            } else {
+                 console.error("Post input field not found!");
+            }
+        } else {
+             console.error("Post container not found!");
+        }
+    }
+});
+
+
+
+userManagerInstance.renderDefaultPosts();
+
+// Unos prijatelja
+findFriendsInput.addEventListener('input', function () {
+    const inputValue = findFriendsInput.value.toLowerCase();
+    const friendSuggestions = userManagerInstance.Friends.filter(
+        friend =>
+            friend.firstName.toLowerCase().startsWith(inputValue) ||
+            friend.lastName.toLowerCase().startsWith(inputValue)
+    );
+    
+    friendGrid.innerHTML = "";
+    friendSuggestions.forEach(friend => {
+        const friendDiv = `
+            <div class="friend">
+                <img src="${friend.img}" alt="${friend.firstName} ${friend.lastName}">
+                <p class="friend-name">${friend.firstName} ${friend.lastName}</p>
+            </div>
+        `;
+        friendGrid.insertAdjacentHTML('beforeend', friendDiv);
+    });
+});
+
+postsData.forEach(postData => {
+    const newPost = new Post(postData.text);
+
+    
+    postData.likes.forEach(like => newPost.addLike(new Like(like.firstName, like.lastName)));
+
+    // Dodavanje komentara postu
+    postData.comments.forEach(comment => {
+        const newComment = new Comment(comment.name, comment.text, comment.img);
+        
+       
+        comment.likes.forEach(like => newComment.addLike(new Like(like.firstName, like.lastName)));
+
+        newPost.addComment(newComment);
+    });
+
+    userManagerInstance.addPost(newPost);
+});
+
+
+userManagerInstance.renderDefaultPosts();
